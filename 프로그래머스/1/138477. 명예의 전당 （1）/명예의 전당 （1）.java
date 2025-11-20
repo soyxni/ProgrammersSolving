@@ -4,17 +4,18 @@ class Solution {
     public int[] solution(int k, int[] score) {
         int[] answer = new int[score.length];
         
-        ArrayList<Integer> rank = new ArrayList<>();
+        PriorityQueue<Integer> rank = new PriorityQueue<>();
         
         for(int i=0; i<score.length; i++){
             rank.add(score[i]);
-            Collections.sort(rank);
-            // k일 후
+            
             if(rank.size() > k){
-                rank.remove(0); //오름차순
+                rank.poll();
             }
-            answer[i] = rank.get(0);
+            
+            answer[i] = rank.peek();
         }
+        
         return answer;
     }
 }
